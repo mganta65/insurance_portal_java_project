@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Portal - Policies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="layout page-layout">
+    <nav th:replace="~{fragments :: sidebar('policies')}"></nav>
+    <main class="main">
+        <div th:replace="~{fragments :: topbar('Policies')}"></div>
+        <div class="panel">
+            <h3>Policies</h3>
+            <table class="table">
+                <tr><th>#</th><th>Policy Number</th><th>Type</th><th>Premium (₹)</th><th>Status</th></tr>
+                <tr th:each="p, st : ${policies}">
+                    <td th:text="${st.count}">1</td>
+                    <td th:text="${p.policyNumber}">POL-1001</td>
+                    <td th:text="${p.type}">Health Insurance</td>
+                    <td th:text="${#numbers.formatDecimal(p.premium,1,'COMMA',0,'POINT')}">12,500</td>
+                    <td><span class="badge" th:classappend="${p.status == 'ACTIVE'} ? 'ok' : 'bad'" th:text="${p.status}">ACTIVE</span></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>

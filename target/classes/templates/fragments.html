@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+
+<nav class="sidebar" th:fragment="sidebar(active)">
+    <h3>INSURANCE PORTAL</h3>
+    <a href="/dashboard" th:classappend="${active == 'dashboard'} ? 'active'">🏠 Dashboard</a>
+    <a href="/policies" th:classappend="${active == 'policies'} ? 'active'">📄 Policies</a>
+    <a href="/claims" th:classappend="${active == 'claims'} ? 'active'">📝 Claims</a>
+    <a href="/payments" th:classappend="${active == 'payments'} ? 'active'">💳 Payments</a>
+    <a href="#">👤 My Profile</a>
+    <a href="#">📊 Reports</a>
+    <a href="#">✉️ Messages</a>
+    <a href="#">❓ Support</a>
+</nav>
+
+<div class="topbar" th:fragment="topbar(title)">
+    <span>☰ <span th:text="${title}">Dashboard</span></span>
+    <span>
+        John Doe (Customer) &nbsp;
+        <form th:action="@{/logout}" method="post" style="display:inline">
+            <button class="logout">Logout</button>
+        </form>
+    </span>
+</div>
+
+</body>
+</html>

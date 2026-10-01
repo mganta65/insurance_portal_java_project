@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Portal - Claims</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="layout page-layout">
+    <nav th:replace="~{fragments :: sidebar('claims')}"></nav>
+    <main class="main">
+        <div th:replace="~{fragments :: topbar('Claims')}"></div>
+        <div class="panel">
+            <h3>Claims</h3>
+            <table class="table">
+                <tr><th>#</th><th>Claim ID</th><th>Policy Number</th><th>Amount (₹)</th><th>Date</th><th>Status</th></tr>
+                <tr th:each="c, st : ${claims}">
+                    <td th:text="${st.count}">1</td>
+                    <td th:text="${c.claimNumber}">CLM12345</td>
+                    <td th:text="${c.policyNumber}">POL-1001</td>
+                    <td th:text="${#numbers.formatDecimal(c.amount,1,'COMMA',0,'POINT')}">20,000</td>
+                    <td th:text="${#temporals.format(c.claimDate,'dd MMM yyyy')}">18 May 2024</td>
+                    <td><span class="badge" th:classappend="${c.status == 'APPROVED'} ? 'ok' : 'pending'" th:text="${c.status}">SUBMITTED</span></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>

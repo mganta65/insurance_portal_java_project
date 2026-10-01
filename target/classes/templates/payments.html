@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Portal - Payments</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="layout page-layout">
+    <nav th:replace="~{fragments :: sidebar('payments')}"></nav>
+    <main class="main">
+        <div th:replace="~{fragments :: topbar('Payments')}"></div>
+        <div class="panel">
+            <h3>Payments</h3>
+            <table class="table">
+                <tr><th>#</th><th>Description</th><th>Amount (₹)</th><th>Date</th></tr>
+                <tr th:each="p, st : ${payments}">
+                    <td th:text="${st.count}">1</td>
+                    <td th:text="${p.description}">Health Insurance Premium</td>
+                    <td th:text="${#numbers.formatDecimal(p.amount,1,'COMMA',0,'POINT')}">12,500</td>
+                    <td th:text="${#temporals.format(p.paymentDate,'dd MMM yyyy')}">20 May 2024</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>

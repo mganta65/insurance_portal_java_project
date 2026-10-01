@@ -28,30 +28,12 @@
 <div class="layout">
 
     <!-- Sidebar -->
-    <nav class="sidebar">
-        <h3>INSURANCE PORTAL</h3>
-        <a class="active" href="#">🏠 Dashboard</a>
-        <a href="/api/policies">📄 Policies</a>
-        <a href="/api/claims">📝 Claims</a>
-        <a href="/api/payments">💳 Payments</a>
-        <a href="#">👤 My Profile</a>
-        <a href="#">📊 Reports</a>
-        <a href="#">✉️ Messages</a>
-        <a href="#">❓ Support</a>
-    </nav>
+    <nav th:replace="~{fragments :: sidebar('dashboard')}"></nav>
 
     <!-- Main area -->
     <main class="main">
 
-        <div class="topbar">
-            <span>☰ Dashboard</span>
-            <span>
-                John Doe (Customer) &nbsp;
-                <form th:action="@{/logout}" method="post" style="display:inline">
-                    <button class="logout">Logout</button>
-                </form>
-            </span>
-        </div>
+        <div th:replace="~{fragments :: topbar('Dashboard')}"></div>
 
         <!-- Summary cards -->
         <section class="cards">
