@@ -1,0 +1,14 @@
+com\example\insuranceportal\model\Activity.class
+com\example\insuranceportal\model\Policy.class
+com\example\insuranceportal\model\Payment.class
+com\example\insuranceportal\repository\ClaimRepository.class
+com\example\insuranceportal\controller\PolicyRestController.class
+com\example\insuranceportal\InsurancePortalApplication.class
+com\example\insuranceportal\model\Claim.class
+com\example\insuranceportal\config\SecurityConfig.class
+com\example\insuranceportal\repository\PolicyRepository.class
+com\example\insuranceportal\controller\ClaimRestController.class
+com\example\insuranceportal\config\DataLoader.class
+com\example\insuranceportal\controller\DashboardController.class
+com\example\insuranceportal\controller\PaymentRestController.class
+com\example\insuranceportal\repository\PaymentRepository.class

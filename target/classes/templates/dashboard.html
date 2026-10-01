@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Portal - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Top banner -->
+<header class="banner">
+    <div class="brand">
+        <div class="logo">🛡️</div>
+        <div>
+            <h1>Insurance Portal</h1>
+            <p>Secure today, Protected tomorrow.</p>
+        </div>
+    </div>
+    <div class="quick-links">
+        <span>📄<br>Buy Policy</span>
+        <span>📝<br>File Claims</span>
+        <span>💳<br>Make Payments</span>
+        <span>🕒<br>Track Status</span>
+    </div>
+</header>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <h3>INSURANCE PORTAL</h3>
+        <a class="active" href="#">🏠 Dashboard</a>
+        <a href="/api/policies">📄 Policies</a>
+        <a href="/api/claims">📝 Claims</a>
+        <a href="/api/payments">💳 Payments</a>
+        <a href="#">👤 My Profile</a>
+        <a href="#">📊 Reports</a>
+        <a href="#">✉️ Messages</a>
+        <a href="#">❓ Support</a>
+    </nav>
+
+    <!-- Main area -->
+    <main class="main">
+
+        <div class="topbar">
+            <span>☰ Dashboard</span>
+            <span>
+                John Doe (Customer) &nbsp;
+                <form th:action="@{/logout}" method="post" style="display:inline">
+                    <button class="logout">Logout</button>
+                </form>
+            </span>
+        </div>
+
+        <!-- Summary cards -->
+        <section class="cards">
+            <div class="card"><small>Total Policies</small><h2 th:text="${totalPolicies}">4</h2></div>
+            <div class="card"><small>Active Policies</small><h2 th:text="${activePolicies}">3</h2></div>
+            <div class="card"><small>Claims Filed</small><h2 th:text="${claimsFiled}">2</h2></div>
+            <div class="card"><small>Total Payments</small>
+                <h2>₹<span th:text="${#numbers.formatInteger(totalPayments,1,'COMMA')}">48,750</span></h2></div>
+        </section>
+
+        <section class="two-col">
+
+            <!-- Policy overview (donut chart) -->
+            <div class="panel">
+                <h3>Policy Overview</h3>
+                <div class="overview">
+                    <div class="donut" th:style="'background: conic-gradient(' + ${gradient} + ')'">
+                        <div class="donut-hole"><b th:text="${totalPolicies}">4</b><br><small>Total</small></div>
+                    </div>
+                    <ul class="legend">
+                        <li th:each="t, st : ${typeCounts}">
+                            <span class="dot" th:style="'background:' + ${colors[st.index]}"></span>
+                            <span th:text="${t.key}">Health Insurance</span>
+                            <b th:text="${t.value}">2</b>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Recent activities -->
+            <div class="panel">
+                <h3>Recent Activities</h3>
+                <div class="activity" th:each="a : ${activities}">
+                    <div>
+                        <b th:text="${a.title}">Payment Successful</b><br>
+                        <small th:text="${a.detail}">Health Insurance Premium</small>
+                    </div>
+                    <div class="right">
+                        <b th:text="${a.amount}">₹12,500</b><br>
+                        <small th:text="${#temporals.format(a.date, 'dd MMM yyyy')}">20 May 2024</small>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
